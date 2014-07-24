@@ -1,0 +1,153 @@
+FORMAT: 1A
+HOST: http://cloud.feedly.com/v3
+
+# Feedly API
+blueprint for Feedly api to manage RSS subscriptions
+
+# Feedly API Root [/]
+
+# Group Feeds
+resources related to *Feedly Feeds*
+
+## Feed [/feeds/:{feedId}]
+Feed is a RSS feed resource
+
++ Parameters
+    + feedId (string) ... Get the metadata about a specific feed
+    
++ Model (application/json)
+
+    + Body
+    
+            {
+              "featured": false,
+              "language": "en",
+              "title": "Engadget",
+              "id": "feed/http://feeds.engadget.com/weblogsinc/engadget",
+              "sponsored": false,
+              "subscribers": 123,
+              "curated": false,
+              "velocity": 180.3,
+              "topics": [
+                "tech",
+                "gadgets"
+              ],
+              "state": "alive",
+              "website": "http://www.engadget.com/"
+            }
+            
+### Retrieve a single Feed metadata [GET]
++ Response 200
+
+    [Feed][]
+
+
+
+
+# Group Subscriptions
+
+## Subscription [/subscriptions]
+
++ Model (application/json)
+
+    + Body 
+
+            [
+              {
+                "sortid": "26152F8F",
+                "title": "Design Milk",
+                "updated": 1367539068016,
+                "id": "feed/http://feeds.feedburner.com/design-milk",
+                "categories": [
+                  {
+                    "id": "user/c805fcbf-3acf-4302-a97e-d82f9d7c897f/category/design",
+                    "label": "design"
+                  },
+                  {
+                    "id": "user/c805fcbf-3acf-4302-a97e-d82f9d7c897f/category/global.must",
+                    "label": "must reads"
+                  }
+                ],
+                "visualUrl": "http://pbs.twimg.com/profile_images/1765276661/DMLogoTM-carton-icon-facebook-twitter_bigger.jpg",
+                "added": 1367539068016,
+                "website": "http://design-milk.com"
+              },
+              {
+                "sortid": "26152F8F",
+                "title": "5 second rule",
+                "updated": 1367539068016,
+                "id": "feed/http://5secondrule.typepad.com/my_weblog/atom.xml",
+                "categories": [
+            
+                ],
+                "added": 1367539068016,
+                "website": "http://5secondrule.typepad.com/my_weblog/"
+              },
+              {
+                "sortid": "26152F8F",
+                "title": "500px: Editors' Choice",
+                "updated": 1367539068016,
+                "id": "feed/http://feed.500px.com/500px-editors",
+                "categories": [
+                  {
+                    "id": "user/c805fcbf-3acf-4302-a97e-d82f9d7c897f/category/photography",
+                    "label": "photography"
+                  }
+                ],
+                "added": 1367539068016,
+                "website": "http://500px.com/editors"
+              }
+            ]
+            
+        
+### Get all user's subscriptions, user must be authenticated [GET]
++ Response 200
+
+    [Subscription][]
+    
+    
+# Group Authentication
+
+
+## Authenticate [/auth/auth{?response_type,client_id,redirect_url,scope,state}]
+
++ Parameters
+
+    + response_type (string) ... Indicates the type of token requested. At this time, this field will always have the value code
+    + client_id (string) ... Indicates the client that is making the request. The value passed in this parameter must exactly match the value set during the partnership program.
+    + redirect_url (string) ... Determines where the response is sent. The value of this parameter must exactly match one of the values set during the partnership program (including the http or https schemes, case, and trailing ‘/’). Make sure this parameter is URL-encoded!
+    + scope (string) ... e.g. https://cloud.feedly.com/subscriptions
+    + state (optional, string) ... Indicates any state which may be useful to your application upon receipt of the response. The feedly Authorization Server roundtrips this parameter, so your application receives the same value it sent. Possible uses include redirecting the user to the correct resource in your site, nonces, and cross-site-request-forgery mitigations. Make sure this parameter is URL-encoded!
+    
+
++ Model (application/json)
+
+    + Body
+    
+    
+### get the access code to exchange with access token later [GET]
++ Response 300
+
+    + Headers
+        
+            Location: http://google.com
+    
+    + Body
+    
+            [Authenticate][]
+    
+        
+    
+        
+    
+            
+
+
+
+
+
+
+
+
+
+
