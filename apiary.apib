@@ -110,7 +110,7 @@ Feed is a RSS feed resource
         
     
         
-## Token  [/auth/token{?response_type,code,client_id,client_secret,redirect_uri,state}]
+## Token  [/auth/token{?response_type,code,client_id,client_secret,redirect_uri,state,grant_type}]
 
 
 + Parameters
@@ -121,28 +121,28 @@ Feed is a RSS feed resource
     + client_secret (string) ... The client secret obtained during application registration
     + redirect_uri (string) ... The URI registered with the application (make sure this parameter is URL-encoded!)
     + state (string) ... Indicates any state which may be useful to your application upon receipt of the response. The feedly Authorization Server roundtrips this parameter, so your application receives the same value it sent. Possible uses include redirecting the user to the correct resource in your site, nonces, and cross-site-request-forgery mitigations.
-    + grant_type (string) authorization_code
+    + grant_type (string) ... authorization_code
 
 
 + Model (application/json)
 
     + Body
     
-          {
-            "id": "c805fcbf-3acf-4302-a97e-d82f9d7c897f",
-            "refresh_token": "AQAA7rJ7InAiOjEsImEiOiJmZWVk...",
-            "plan": "standard",
-            "access_token": "AQAAF4iTvPam_M4_dWheV_5NUL8E...",
-            "expires_in": 3920,
-            "state": "...",
-            "token_type": "Bearer"
-          }
+              {
+                "id": "c805fcbf-3acf-4302-a97e-d82f9d7c897f",
+                "refresh_token": "AQAA7rJ7InAiOjEsImEiOiJmZWVk...",
+                "plan": "standard",
+                "access_token": "AQAAF4iTvPam_M4_dWheV_5NUL8E...",
+                "expires_in": 3920,
+                "state": "...",
+                "token_type": "Bearer"
+              }
 
 ### exchange the code for an access token [POST]
 
 + Response 200
 
-  [Token][]
+    [Token][]
     
         
 
